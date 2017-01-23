@@ -18,10 +18,10 @@ var api = new ParseServer({
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   push: {
-  	android: {
-  		senderId: process.env.PUSH_ANDROID_SENDER_ID || '',
-  		apiKey: process.env.PUSH_ANDROID_API_KEY || ''
-  	}
+    android: {
+      senderId: process.env.PUSH_ANDROID_SENDER_ID || '',
+      apiKey: process.env.PUSH_ANDROID_API_KEY || ''
+    }
   }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
