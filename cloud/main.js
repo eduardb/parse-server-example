@@ -7,7 +7,7 @@ Parse.Cloud.define('sendPushAndroid', function(req, res) {
 
   const channel = req.params.channel;
   const installationId = req.params.installationId;
-  const payload = req.params.payload;
+  const payload = JSON.parse(req.params.payload);
 
   var query = new Parse.Query(Parse.Installation);
   query.equalTo('channels', channel);
