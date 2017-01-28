@@ -9,6 +9,11 @@ Parse.Cloud.define('sendPushAndroid', function(req, res) {
   const installationId = req.params.installationId;
   const payload = JSON.parse(req.params.payload);
 
+  if (payload.pkg === 'com.koo.lightmanager') {
+    res.error('com.koo.lightmanager was banned');
+    return;
+  }
+
   var query = new Parse.Query(Parse.Installation);
   query.equalTo('channels', channel);
   query.equalTo('deviceType', 'android');
