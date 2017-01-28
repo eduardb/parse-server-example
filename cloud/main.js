@@ -9,7 +9,7 @@ Parse.Cloud.define('sendPushAndroid', function(req, res) {
   const installationId = req.params.installationId;
   const payload = JSON.parse(req.params.payload);
 
-  if (payload.pkg === 'com.koo.lightmanager') {
+  if (payload.pkg === 'com.koo.lightmanager' || payload.pkg === 'com.estrongs.android.pop') {
     res.error('com.koo.lightmanager was banned');
     return;
   }
