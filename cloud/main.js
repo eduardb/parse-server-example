@@ -11,6 +11,7 @@ Parse.Cloud.define('sendPushAndroid', function(req, res) {
 
   if (payload.pkg === 'com.koo.lightmanager'
       || payload.pkg === 'com.estrongs.android.pop'
+      || payload.pkg === 'com.rageconsulting.android.lightflowlegacy'
       || payload.pkg === 'jp.gr.java_conf.piyota.nexusbatteryledlight') {
     res.error(`Package ${payload.pkg} was banned.`);
     return;
