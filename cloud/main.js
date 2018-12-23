@@ -1,6 +1,5 @@
-
 Parse.Cloud.define('hello', function(req, res) {
-  res.success('Hi');
+  return 'Hi';
 });
 
 Parse.Cloud.define('sendPushAndroid', function(req, res) {
