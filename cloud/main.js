@@ -2,7 +2,7 @@ Parse.Cloud.define('hello', function(req, res) {
   return 'Hi';
 });
 
-Parse.Cloud.define('sendPushAndroid', function(req, res) {
+Parse.Cloud.define('sendPushAndroid', async (req) => {
 
   const channel = req.params.channel;
   const installationId = req.params.installationId;
@@ -12,24 +12,20 @@ Parse.Cloud.define('sendPushAndroid', function(req, res) {
       || payload.pkg === 'com.estrongs.android.pop'
       || payload.pkg === 'com.rageconsulting.android.lightflowlegacy'
       || payload.pkg === 'jp.gr.java_conf.piyota.nexusbatteryledlight') {
-    res.error(`Package ${payload.pkg} was banned.`);
-    return;
+    throw `Package ${payload.pkg} was banned.`;
   }
 
-  var query = new Parse.Query(Parse.Installation);
+  const query = new Parse.Query(Parse.Installation);
   query.equalTo('channels', channel);
   query.equalTo('deviceType', 'android');
   query.notEqualTo('installationId', installationId);
 
-  Parse.Push.send({
+  await Parse.Push.send({
     data: payload,
     where: query
   }, {
     useMasterKey: true
-  })
-  .then(function() {
-    res.success('Push Sent!');
-  }, function(error) {
-    res.error('Error while trying to send push ' + error.message);
   });
+
+  return ('Push Sent!');
 });
